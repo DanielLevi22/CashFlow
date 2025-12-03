@@ -11,12 +11,13 @@ namespace CashFlow.Api.Controllers
 
 
         [HttpPost]
-        public IActionResult CreateExpense([FromBody] RequestRegisterExpenseJson request)
+        public IActionResult CreateExpense(
+            [FromServices] IRegisterExpenseUseCase registerExpenseUseCase,
+            [FromBody] RequestRegisterExpenseJson request
+            )
         {
-            var useCase = new RegisterExpenseUseCase();
-            var response = useCase.Execute(request);
+            var response =  registerExpenseUseCase.Execute(request);
             return Created(string.Empty, response);
-
 
         }
 
