@@ -8,9 +8,9 @@ namespace CommonTestUtilities.Requests
     public class RequestRegisterExpenseJsonBuilder
     {
 
-        public static RequestRegisterExpenseJson Builder() {
+        public static RequestExpenseJson Builder() {
 
-         return  new Faker<RequestRegisterExpenseJson>()
+         return  new Faker<RequestExpenseJson>()
                 .RuleFor(r => r.Amount, f => f.Finance.Amount())
                 .RuleFor(r => r.Date, f => f.Date.Past())
                 .RuleFor(r => r.Description, f => f.Lorem.Sentence())

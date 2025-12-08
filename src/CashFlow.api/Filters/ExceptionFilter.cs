@@ -24,21 +24,14 @@ namespace CashFlow.Api.Filters
 
         private void HandlePrivationException(ExceptionContext context)
         {
-            if (context.Exception is ErrorOnValidationExcption)
-            {
 
-                var ex = (ErrorOnValidationExcption)context.Exception;
+            var cashFlowException = context.Exception as CashFlowException;
+            var errorResponse = new ResponseErrorJson(cashFlowException!.GetErros());
 
-                var errrosResponse = new ResponseErrorJson(ex.errors);
-                context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-                context.Result = new BadRequestObjectResult(errrosResponse);
+            context.HttpContext.Response.StatusCode = cashFlowException.StatusCode;
 
-            }else
-            {
-                var errrosResponse = new ResponseErrorJson(context.Exception.Message);
-                context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-                context.Result = new BadRequestObjectResult(errrosResponse);
-            }
+            context.Result = new ObjectResult(errorResponse);
+           
         }
 
         private void ThrowUnknowError(ExceptionContext context)
