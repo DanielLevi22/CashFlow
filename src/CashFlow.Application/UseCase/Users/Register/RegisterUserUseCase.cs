@@ -36,7 +36,7 @@ namespace CashFlow.Application.UseCase.Users.Register
 
         public async Task<ResponseRegisteredExpenseJson> Execute(RequestUserJson request)
         {
-            Validated(request);
+            await Validated(request);
             var user = _iMapper.Map<Domain.Entities.User>(request);
             user.Password = _passwordEncripter.Encript(request.Password);
             user.UserIndetifier = Guid.NewGuid();

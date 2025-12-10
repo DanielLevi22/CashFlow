@@ -21,7 +21,7 @@ namespace CashFlow.Application.UseCase.Users
         {
            if(string.IsNullOrEmpty(password) || password.Length < 8)
            {
-                context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, ResourceErrorMessages.EMAIL_INVALID);
+                context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, ResourceErrorMessages.PASSWORD_INVALID);
                 return false;
            }
 
