@@ -9,6 +9,6 @@ namespace CashFlow.Application.UseCase.Users.Register
 
 
     {
-        public Task<ResponseRegisteredExpenseJson> Execute(RequestUserJson request);
+        public Task<ResponseRegisteredUserJson> Execute(RequestUserJson request);
     }
 }

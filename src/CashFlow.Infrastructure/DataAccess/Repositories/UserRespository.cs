@@ -1,4 +1,5 @@
-﻿using CashFlow.Domain.Repositories.Users;
+﻿using CashFlow.Domain.Entities;
+using CashFlow.Domain.Repositories.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace CashFlow.Infrastructure.DataAccess.Repositories
@@ -20,6 +21,13 @@ namespace CashFlow.Infrastructure.DataAccess.Repositories
         public async Task Add(Domain.Entities.User user)
         {
            await _dbContext.Users.AddAsync(user);
+        }
+
+        public async Task<User?> GetUserByEmail(string email)
+        {
+
+            return await _dbContext.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Email.Equals(email));
+
         }
     }
 }
